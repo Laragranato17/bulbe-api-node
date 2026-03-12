@@ -19,7 +19,30 @@ function buscarPorId(req, res) {
 
 
 function criar(req, res) {
-  // TODO
+
+  const { nome, descricao, preco, categoria, estoque } = req.body;
+
+  if (!nome) return res.status(400).json({ erro: "O campo 'nome' é obrigatório" });
+  if (!descricao) return res.status(400).json({ erro: "O campo 'descricao' é obrigatório" });
+  if (!preco) return res.status(400).json({ erro: "O campo 'preco' é obrigatório" });
+  if (!categoria) return res.status(400).json({ erro: "O campo 'categoria' é obrigatório" });
+  if (estoque == null) return res.status(400).json({ erro: "O campo 'estoque' é obrigatório" });
+
+  const novoProduto = {
+    id: nextId++,
+    nome,
+    descricao,
+    preco,
+    categoria,
+    estoque,
+    ativo: true,
+    criado_em: new Date().toISOString(),
+    atualizado_em: new Date().toISOString()
+  };
+
+  produtos.push(novoProduto);
+
+  res.status(201).json(novoProduto);
 }
 
 function atualizar(req, res) {
