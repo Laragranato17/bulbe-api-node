@@ -2,8 +2,9 @@ let produtos = [];
 let nextId = 1;
 
 function listar(req, res) {
-  // TODO
+  res.status(200).json(produtos);
 }
+
 
 function buscarPorId(req, res) {
   // TODO
